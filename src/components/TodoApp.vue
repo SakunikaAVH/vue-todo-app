@@ -8,6 +8,11 @@
       <button @click="addTask" class="btn btn-warning rounded-0">ADD</button>
     </div>
 
+    <!-- Search -->
+    <div class="d-flex mt-5">
+      <input v-model="search" type="text" placeholder ="Search task" class="form-control"/>
+    </div>
+
     <!-- Task table -->
     <table class="table table-striped mt-5">
   <thead>
@@ -19,7 +24,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr v-for="(task, index) in tasks" :key="index">
+    <tr v-for="(task, index) in filteredTasks" :key="index">
       <td> 
         <span :class="{'Finished': task.status === 'Finished'}">{{task.name}}</span>
       </td>
@@ -60,6 +65,7 @@ export default {
     return {
       task: '',
       editedTask: null,
+      search: '',
       availableStatuses: ['To-do', 'In-progress', 'Finished'],
 
       tasks: [
@@ -107,6 +113,14 @@ export default {
       this.tasks[index].status = this.availableStatuses[newIndex];
     }
 
+  },
+
+  computed: {
+    filteredTasks:function(){
+      return this.tasks.filter((task) => {
+        return task.name.match(this.search);
+      });
+    }
   }
 
 };
