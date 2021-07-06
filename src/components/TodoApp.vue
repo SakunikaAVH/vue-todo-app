@@ -118,7 +118,7 @@ export default {
   computed: {
     filteredTasks:function(){
       return this.tasks.filter((task) => {
-        return task.name.match(this.search);
+        return task.name.toLowerCase().match(this.search.toLowerCase());
       });
     }
   }
