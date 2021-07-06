@@ -13,6 +13,9 @@
       <input v-model="search" type="text" placeholder ="Search task" class="form-control"/>
     </div>
 
+
+    <download-csv :data = "tasks"> Download Todo List </download-csv>
+
     <!-- Task table -->
     <table class="table table-striped mt-5">
   <thead>
