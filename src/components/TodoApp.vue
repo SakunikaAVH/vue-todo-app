@@ -13,46 +13,48 @@
       <input v-model="search" type="text" placeholder ="Search task" class="form-control"/>
     </div>
 
-
-    <download-csv :data = "tasks"> Download Todo List </download-csv>
+    <!-- CSV download -->
+    <div>
+      <button class="btn btn-success mt-5"><download-csv :data = "tasks"> Download List </download-csv></button>
+    </div>
 
     <!-- Task table -->
     <table class="table table-striped mt-5">
-  <thead>
-    <tr>
-      <th scope="col"> Task </th>
-      <th scope="col"> Status </th>
-      <th scope="col" class="text-center"> Edit </th>
-      <th scope="col" class="text-center"> Delete </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr v-for="(task, index) in filteredTasks" :key="index">
-      <td> 
-        <span :class="{'Finished': task.status === 'Finished'}">{{task.name}}</span>
-      </td>
-      <td style="width: 120px">
-          <span @click="changeStatus(index)" class="pointer" 
-            :class="{'text-danger' : task.status === 'To-do',
-            'text-primary' : task.status === 'In-progress',
-            'text-success' : task.status === 'Finished' 
-          }">
-            {{task.status}}
-          </span>
-      </td>
-      <td>
-        <div class="text-center" @click="editTask(index)">
-          <span class="fa fa-pen"></span>
-        </div>
-      </td>
-      <td>
-        <div class="text-center" @click="deleteTask(index)">
-          <span class="fa fa-trash"></span>
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
+      <thead>
+        <tr>
+          <th scope="col"> Task </th>
+          <th scope="col"> Status </th>
+          <th scope="col" class="text-center"> Edit </th>
+          <th scope="col" class="text-center"> Delete </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(task, index) in filteredTasks" :key="index">
+          <td> 
+            <span :class="{'Finished': task.status === 'Finished'}">{{task.name}}</span>
+          </td>
+          <td style="width: 120px">
+              <span @click="changeStatus(index)" class="pointer" 
+                :class="{'text-danger' : task.status === 'To-do',
+                'text-primary' : task.status === 'In-progress',
+                'text-success' : task.status === 'Finished' 
+              }">
+                {{task.status}}
+              </span>
+          </td>
+          <td>
+            <div class="text-center" @click="editTask(index)">
+              <span class="fa fa-pen"></span>
+            </div>
+          </td>
+          <td>
+            <div class="text-center" @click="deleteTask(index)">
+              <span class="fa fa-trash"></span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
   </div>
 </template>
