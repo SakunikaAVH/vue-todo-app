@@ -78,9 +78,12 @@ export default {
   },
 
   watch: {
-    tasks(newTasks) {
-      localStorage.tasks = JSON.stringify(newTasks);
-    }
+    tasks: {
+      handler: function (newTasks) { 
+        localStorage.tasks = JSON.stringify(newTasks);
+      },
+      deep: true
+    },
   },
 
   methods: {
