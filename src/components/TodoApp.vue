@@ -67,17 +67,19 @@ export default {
       editedTask: null,
       search: '',
       availableStatuses: ['To-do', 'In-progress', 'Finished'],
+      tasks: []
+    }
+  },
 
-      tasks: [
-        // {
-        //   name: 'Order Pizza',
-        //   status: 'To-do'
-        // },
-        // {
-        //   name: 'Join skype meeting at 10:00 am',
-        //   status: 'In-progress'
-        // }
-      ]
+  mounted(){
+    if (localStorage.tasks){
+      this.tasks = JSON.parse(localStorage.tasks);
+    }
+  },
+
+  watch: {
+    tasks(newTasks) {
+      localStorage.tasks = JSON.stringify(newTasks);
     }
   },
 
